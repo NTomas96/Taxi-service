@@ -95,3 +95,12 @@ C:\Users\Nemanja\Desktop\Web\WebProjekat\Projekat\Projekat\obj\Debug\Projekat.cs
 C:\Users\Nemanja\Desktop\Web\WebProjekat\Projekat\Projekat\obj\Debug\Projekat.csproj.CopyComplete
 C:\Users\Nemanja\Desktop\Web\WebProjekat\Projekat\Projekat\obj\Debug\Projekat.dll
 C:\Users\Nemanja\Desktop\Web\WebProjekat\Projekat\Projekat\obj\Debug\Projekat.pdb
+C:\Users\Nemanja\Desktop\Web\WebProjekat\Projekat\Projekat\bin\EntityFramework.dll
+C:\Users\Nemanja\Desktop\Web\WebProjekat\Projekat\Projekat\bin\EntityFramework.SqlServer.dll
+C:\Users\Nemanja\Desktop\Web\WebProjekat\Projekat\Projekat\bin\System.Data.SQLite.dll
+C:\Users\Nemanja\Desktop\Web\WebProjekat\Projekat\Projekat\bin\System.Data.SQLite.EF6.dll
+C:\Users\Nemanja\Desktop\Web\WebProjekat\Projekat\Projekat\bin\System.Data.SQLite.Linq.dll
+C:\Users\Nemanja\Desktop\Web\WebProjekat\Projekat\Projekat\bin\EntityFramework.xml
+C:\Users\Nemanja\Desktop\Web\WebProjekat\Projekat\Projekat\bin\EntityFramework.SqlServer.xml
+C:\Users\Nemanja\Desktop\Web\WebProjekat\Projekat\Projekat\bin\System.Data.SQLite.xml
+C:\Users\Nemanja\Desktop\Web\WebProjekat\Projekat\Projekat\bin\System.Data.SQLite.dll.config

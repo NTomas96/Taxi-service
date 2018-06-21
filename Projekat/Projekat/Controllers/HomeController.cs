@@ -8,6 +8,8 @@ namespace Projekat.Controllers
 {
     public class HomeController : Controller
     {
+        DataBaseFolder.DataBase database = new DataBaseFolder.DataBase();
+
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
