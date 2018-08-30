@@ -1,0 +1,22 @@
+﻿[
+    {
+      "Username": "admin1",
+      "Password": "admin1",
+      "Firstname": "Pera",
+      "Lastname": "Peric",
+      "Gender": 0,
+      "JMBG": "1234567891233",
+      "PhoneNumber": "0642987664",
+      "Email": "pera@gmail.com"
+    },
+    {
+      "Username": "admin2",
+      "Password": "admin2",
+      "Firstname": "Nikola",
+      "Lastname": "Nikolic",
+      "Gender": 0,
+      "JMBG": "9876543219872",
+      "PhoneNumber": "0642987649",
+      "Email": "nikola@gmail.com"
+    }
+]

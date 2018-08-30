@@ -16,6 +16,7 @@ namespace WebProject
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            Admins.Load("admins.json");
         }
     }
 }
