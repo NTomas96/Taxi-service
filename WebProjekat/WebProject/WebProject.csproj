@@ -188,6 +188,7 @@
     <Compile Include="Controllers\AccountControler.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RideControler.cs" />
     <Compile Include="Database\Auth.cs" />
     <Compile Include="Database\Database.cs" />
     <Compile Include="Database\Mapper\Annotations.cs" />
