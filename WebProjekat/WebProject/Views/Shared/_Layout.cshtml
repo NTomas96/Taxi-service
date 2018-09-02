@@ -1,1 +1,95 @@
-﻿
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/taxi.jpg" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://openlayers.org/en/v5.0.0/css/ol.css" type="text/css">
+    <script src="https://openlayers.org/en/v5.0.0/build/ol.js" type="text/javascript"></script>
+    <style>
+
+        h1 {
+            text-align: center;
+        }
+
+        h4 {
+            text-align: center;
+        }
+
+        legend {
+            font-size: larger !important;
+            font-style: italic;
+        }
+
+        #content {
+            background: linear-gradient(to right, #bababa, #747474);
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+
+        a {
+            border-radius: 2px;
+            border: 1px solid #000000;
+            width: 200px;
+            display: inline-block;
+            border-collapse: collapse;
+            color: #000000;
+            background: #ffca39;
+            text-decoration: none;
+            line-height: 26px;
+            text-align: center;
+        }
+
+        input[type=submit] {
+            border-radius: 2px;
+            border: 1px solid #000000;
+            width: 200px;
+            display: inline-block;
+            border-collapse: collapse;
+            color: #000000;
+            background: #ffca39;
+            text-decoration: none;
+            line-height: 26px;
+            text-align: center;
+        }
+
+        label {
+            width: 100px;
+            display: inline-block;
+            text-align: left;
+        }
+
+        select {
+            width: 160px;
+        }
+
+        fieldset {
+            border: 0;
+        }
+
+        .tableAction {
+            border: 0 !important;
+            width: 70px !important;
+            margin-right: 5px;
+        }
+
+        table {
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Taxi Service</h1>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/app")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+

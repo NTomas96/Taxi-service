@@ -23,8 +23,22 @@ namespace WebProject
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/Scripts/app/common.js",
-                "~/Scripts/app/start.js"
+                "~/Scripts/app/start.js",
 
+                "~/Scripts/app/cancelride.js",
+                "~/Scripts/app/createdriver.js",
+                "~/Scripts/app/createride.js",
+                "~/Scripts/app/commentride.js",
+                "~/Scripts/app/giveride.js",
+                "~/Scripts/app/editlocation.js",
+                "~/Scripts/app/editprofile.js",
+                "~/Scripts/app/editride.js",
+                "~/Scripts/app/finishride.js",
+                "~/Scripts/app/home.js",
+                "~/Scripts/app/login.js",
+                "~/Scripts/app/orderride.js",
+                "~/Scripts/app/register.js",
+                "~/Scripts/app/script.js"
                 ));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
