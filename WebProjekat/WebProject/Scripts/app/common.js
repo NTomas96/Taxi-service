@@ -118,7 +118,7 @@ window.common = (function () {
 
         if (type === "date") {
             div.fromInput = document.createElement("input");
-            div.fromInput.type = "datetime-local";
+            div.fromInput.type = "datetime";
             
 
             var label = document.createElement("label");
@@ -131,7 +131,7 @@ window.common = (function () {
             div.appendChild(document.createElement("br"));
 
             div.toInput = document.createElement("input");
-            div.toInput.type = "datetime-local";
+            div.toInput.type = "datetime";
 
 
             var label = document.createElement("label");
