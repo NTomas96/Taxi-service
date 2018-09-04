@@ -118,7 +118,7 @@ window.common = (function () {
 
         if (type === "date") {
             div.fromInput = document.createElement("input");
-            div.fromInput.type = "datetime";
+            div.fromInput.type = "datetime-local";
             
 
             var label = document.createElement("label");
@@ -131,7 +131,7 @@ window.common = (function () {
             div.appendChild(document.createElement("br"));
 
             div.toInput = document.createElement("input");
-            div.toInput.type = "datetime";
+            div.toInput.type = "datetime-local";
 
 
             var label = document.createElement("label");
@@ -267,6 +267,7 @@ window.common = (function () {
         rideTable.rideFilter = [];
 
         var row = rideTable.insertRow(0);
+        row.style.backgroundColor = "#EEF4EA";
 
         var cell = row.insertCell(0);
         cell.style.textAlign = "center";
@@ -427,19 +428,23 @@ window.common = (function () {
         cell.appendChild(document.createTextNode("  "));
         cell.appendChild(searchButtonReset);
 
-        
-
         row = rideTable.insertRow(1);
+        row.style.backgroundColor = "transparent";
         var cell = row.insertCell(0);
-        cell.innerHTML = "Time";
-        cell.style.textAlign = "center";
-        cell.style.border = "1px solid black";
-        cell = row.insertCell(1);
+        cell.colSpan = 7;
+
+        row = rideTable.insertRow(2);
+        row.style.backgroundColor = "#ff9728";
+        var cell = row.insertCell(0);
         cell.innerHTML = "Status";
         cell.style.textAlign = "center";
         cell.style.border = "1px solid black";
-        cell = row.insertCell(2);
+        cell = row.insertCell(1);
         cell.innerHTML = "Driver";
+        cell.style.textAlign = "center";
+        cell.style.border = "1px solid black";
+        cell = row.insertCell(2);
+        cell.innerHTML = "Vehicle type";
         cell.style.textAlign = "center";
         cell.style.border = "1px solid black";
         cell = row.insertCell(3);
@@ -447,15 +452,15 @@ window.common = (function () {
         cell.style.textAlign = "center";
         cell.style.border = "1px solid black";
         cell = row.insertCell(4);
-        cell.innerHTML = "Vehicle type";
+        cell.innerHTML = "Time";
         cell.style.textAlign = "center";
         cell.style.border = "1px solid black";
         cell = row.insertCell(5);
-        cell.innerHTML = "Actions";
+        cell.innerHTML = "Comment";
         cell.style.textAlign = "center";
         cell.style.border = "1px solid black";
         cell = row.insertCell(6);
-        cell.innerHTML = "Comment";
+        cell.innerHTML = "Action";
         cell.style.textAlign = "center";
         cell.style.border = "1px solid black";
 
@@ -464,34 +469,25 @@ window.common = (function () {
             var ride = rides[i];
 
             var row = rideTable.insertRow(i + 2);
+            row.style.backgroundColor = "#ffe7bd";
             row.ride = ride;
 
             var cell = row.insertCell(0);
-            cell.innerHTML = timeConverter(ride.Time);
-            cell.style.border = "1px solid black";
-            cell.style.textAlign = "center";
-
-            cell = row.insertCell(1);
             cell.innerHTML = rideStatuses[ride.Status].name;
             cell.style.border = "1px solid black";
             cell.style.textAlign = "center";
 
-            cell = row.insertCell(2);
+            cell = row.insertCell(1);
 
             var driver = "/";
             if (ride.Driver) {
                 driver = ride.Driver.Firstname + " " + ride.Driver.Lastname;
             }
             cell.innerHTML = driver;
-            cell.style.textAlign = "center";
             cell.style.border = "1px solid black";
-
-            cell = row.insertCell(3);
-            cell.innerHTML = ride.Price;
             cell.style.textAlign = "center";
-            cell.style.border = "1px solid black";
 
-            cell = row.insertCell(4);
+            cell = row.insertCell(2);
 
             var vehicleType = "Any";
 
@@ -503,21 +499,31 @@ window.common = (function () {
             cell.style.textAlign = "center";
             cell.style.border = "1px solid black";
 
+            cell = row.insertCell(3);
+            cell.innerHTML = ride.Price;
+            cell.style.textAlign = "center";
+            cell.style.border = "1px solid black";
+
+            cell = row.insertCell(4);
+
+            cell.innerHTML = timeConverter(ride.Time);
+            cell.style.textAlign = "center";
+            cell.style.border = "1px solid black";
+
             cell = row.insertCell(5);
             cell.style.textAlign = "center";
             cell.style.border = "1px solid black";
-            callback(ride, user, cell);
-
-            cell = row.insertCell(6);
-            cell.style.textAlign = "left";
-            cell.style.border = "1px solid black";
-
             if (ride.Comment != null) {
-                
+
                 cell.innerHTML = "By: " + ride.Comment.Username + "<br/>On: " + timeConverter(ride.Comment.Time) + "<br/>Comment: " + ride.Comment.Description + "<br/>Rating: " + ride.Comment.Review;
             } else {
                 cell.innerHTML = "/";
             }
+
+            cell = row.insertCell(6);
+            cell.style.textAlign = "left";
+            cell.style.border = "1px solid black";
+            callback(ride, user, cell);
         }
 
         sortTableBy(rideTable, "date");

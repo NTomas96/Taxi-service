@@ -75,21 +75,31 @@
             margin-right: 5px;
         }
 
-        table {
-            background: white;
+        body{
+            /* The image used */
+            background-image: url("taxibg3.jpg");
+            /* Full height */
+            height: 100%;
+            /* Center and scale the image nicely */
+            background-size: 200% 300%;
+            background-repeat: no-repeat;
         }
+
     </style>
 </head>
 <body>
-    <h1>Taxi Service</h1>
-    <div class="container body-content">
-        @RenderBody()
-    </div>
+    <div class="bg">
+        <h1>Taxi Service</h1>
+        <div class="container body-content">
+            @RenderBody()
+        </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/app")
-    @RenderSection("Scripts", required: false)
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/app")
+        @RenderSection("Scripts", required: false)
+
+    </div>
 </body>
 </html>
 

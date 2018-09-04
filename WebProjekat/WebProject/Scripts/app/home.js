@@ -126,6 +126,7 @@
             content.appendChild(welcomeText);
             content.appendChild(document.createElement("hr"));
 
+            content.appendChild(document.createTextNode("Actions:  "));
             content.appendChild(editProfile);
             content.appendChild(document.createTextNode("  "));
 
@@ -172,9 +173,15 @@
             content.appendChild(document.createElement("hr"));
             var rideTableExtra;
 
-            if (user.Role != 0) {
+            if (user.Role != 0 && user.Role != 1) {
                 rideTableExtra = document.createElement("table");
                 content.appendChild(document.createTextNode("Free rides:"));
+                content.appendChild(document.createElement("br"));
+                content.appendChild(rideTableExtra);
+            }
+            else if (user.Role == 1) {
+                rideTableExtra = document.createElement("table");
+                content.appendChild(document.createTextNode("All rides:"));
                 content.appendChild(document.createElement("br"));
                 content.appendChild(rideTableExtra);
             }
