@@ -371,8 +371,8 @@ window.common = (function () {
         label.htmlFor = input2;
 
         cell.appendChild(input2);
-        cell.appendChild(label);
-        cell.appendChild(document.createElement("br"));
+        cell.appendChild(label);       
+
 
         var cell = row.insertCell(2);
         cell.style.textAlign = "left";
