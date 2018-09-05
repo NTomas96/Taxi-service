@@ -2,6 +2,10 @@
 window.common = (function () {
     var common = {};
 
+    common.getCoordsDistance = function (firstPoint, secondPoint) {
+        return ol.sphere.getDistance(firstPoint, secondPoint);
+    }
+
     function timeConverter(UNIX_timestamp) {
         var a = new Date(UNIX_timestamp * 1000);
         var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -97,6 +101,32 @@ window.common = (function () {
                 if (rating1 > rating2)
                     return -1;
                 else if (rating1 < rating2)
+                    return 1;
+                else
+                    return 0;
+            });
+
+            table.innerHTML = "";
+            for (var i = 0; i < rows.length; i++) {
+                var row = rows[i];
+                table.appendChild(row);
+            }
+        }
+        else if (by === "distance") {
+            var rows = Array.from(table.rows);
+            rows.sort(function (row1, row2) {
+                if (!("ride" in row1))
+                    return -1;
+
+                if (!("ride" in row2))
+                    return 1;
+
+                var dis1 = row1.myDistance;
+                var dis2 = row2.myDistance;
+                
+                if (dis1 < dis2)
+                    return -1;
+                else if (dis1 > dis2)
                     return 1;
                 else
                     return 0;
@@ -324,6 +354,9 @@ window.common = (function () {
         cell.style.textAlign = "center";
         cell.style.border = "1px solid black";
         cell.colSpan = 3;
+        if (user.Role === 2) {
+            cell.colSpan = 4;
+        }
         cell.appendChild(document.createTextNode("Sort by:"));
         cell.appendChild(document.createElement("br"));
         cell.appendChild(document.createElement("br"));
@@ -332,16 +365,6 @@ window.common = (function () {
         var input1 = document.createElement("input");
         input1.type = "radio";
         input1.checked = true;
-        input1.addEventListener("change", function (e) {
-            if (e.target.checked) {
-                input2.checked = false;
-                sortTableBy(rideTable, "date");
-            }
-            else {
-                input2.checked = true;
-            }
-            e.preventDefault();
-        });
 
         var label = document.createElement("label");
         label.innerHTML = "Date";
@@ -354,17 +377,6 @@ window.common = (function () {
         var input2 = document.createElement("input");
         input2.type = "radio";
         input2.checked = false;
-        input2.addEventListener("change", function (e) {
-            if (e.target.checked) {
-                input1.checked = false;
-                sortTableBy(rideTable, "rating");
-            }
-            else {
-                input1.checked = true;
-            }
-
-            e.preventDefault();
-        });
 
         var label = document.createElement("label");
         label.innerHTML = "Rating";
@@ -372,6 +384,54 @@ window.common = (function () {
 
         cell.appendChild(input2);
         cell.appendChild(label);
+
+        var input3;
+
+        if (user.Role === 2) {
+            input3 = document.createElement("input");
+            input3.type = "radio";
+            input3.checked = false;
+
+            var label = document.createElement("label");
+            label.innerHTML = "Distance";
+            label.htmlFor = input3;
+
+            cell.appendChild(input3);
+            cell.appendChild(label);
+
+            input3.addEventListener("change", function (e) {
+                if (e.target.checked) {
+                    input1.checked = false;
+                    input2.checked = false;
+                    sortTableBy(rideTable, "distance");
+                }
+
+                e.preventDefault();
+            });
+        }
+
+        input1.addEventListener("change", function (e) {
+            if (e.target.checked) {
+                input2.checked = false;
+                if (user.Role === 2) {
+                    input3.checked = false;
+                }
+                sortTableBy(rideTable, "date");
+            }
+            e.preventDefault();
+        });
+
+        input2.addEventListener("change", function (e) {
+            if (e.target.checked) {
+                input1.checked = false;
+                if (user.Role === 2) {
+                    input3.checked = false;
+                }
+                sortTableBy(rideTable, "rating");
+            }
+
+            e.preventDefault();
+        });
 
         var cell = row.insertCell(2);
         cell.style.textAlign = "left";
@@ -450,15 +510,23 @@ window.common = (function () {
         cell.innerHTML = "Price";
         cell.style.textAlign = "center";
         cell.style.border = "1px solid black";
-        cell = row.insertCell(4);
+        var k = 4;
+        if (user.Role === 2) {
+            cell = row.insertCell(4);
+            cell.innerHTML = "Distance (m)";
+            cell.style.textAlign = "center";
+            cell.style.border = "1px solid black";
+            k = 5;
+        }
+        cell = row.insertCell(k);
         cell.innerHTML = "Time";
         cell.style.textAlign = "center";
         cell.style.border = "1px solid black";
-        cell = row.insertCell(5);
+        cell = row.insertCell(k+1);
         cell.innerHTML = "Comment";
         cell.style.textAlign = "center";
         cell.style.border = "1px solid black";
-        cell = row.insertCell(6);
+        cell = row.insertCell(k+2);
         cell.innerHTML = "Action";
         cell.style.textAlign = "center";
         cell.style.border = "1px solid black";
@@ -503,13 +571,31 @@ window.common = (function () {
             cell.style.textAlign = "center";
             cell.style.border = "1px solid black";
 
-            cell = row.insertCell(4);
+            var kn = 4;
+            if (user.Role === 2) {
+                cell = row.insertCell(4);
 
+                var distance = 0;
+                if (user.Location != null) {
+                    var point1 = [user.Location.X, user.Location.Y];
+                    var point2 = [ride.Origin.X, ride.Origin.Y];
+                    distance = Math.round(common.getCoordsDistance(point1, point2));
+                }
+                
+                cell.innerHTML = distance;
+                cell.style.textAlign = "center";
+                cell.style.border = "1px solid black";
+                kn++;
+
+                row.myDistance = distance;
+            }
+
+            cell = row.insertCell(kn);            
             cell.innerHTML = timeConverter(ride.Time);
             cell.style.textAlign = "center";
             cell.style.border = "1px solid black";
 
-            cell = row.insertCell(5);
+            cell = row.insertCell(kn+1);
             cell.style.textAlign = "center";
             cell.style.border = "1px solid black";
             if (ride.Comment != null) {
@@ -519,7 +605,7 @@ window.common = (function () {
                 cell.innerHTML = "/";
             }
 
-            cell = row.insertCell(6);
+            cell = row.insertCell(kn+2);
             cell.style.textAlign = "left";
             cell.style.border = "1px solid black";
             callback(ride, user, cell);

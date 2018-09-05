@@ -4,7 +4,7 @@
 
     function updatePositionElement() {
         if (position) {
-            positionElement.innerHTML = "Your new coordinates are:</br>X: " + roundCoordinate(position[0]) + " Y: " + roundCoordinate(position[0]);
+            positionElement.innerHTML = "Your new coordinates are:</br>X: " + roundCoordinate(position[0]) + " Y: " + roundCoordinate(position[1]);
         }
         else {
             positionElement.innerHTML = "";

@@ -55,8 +55,8 @@
         });
     }
 
-    function giveRide(rideId) {
-        document.changePage("giveride", { rideId: rideId });
+    function giveRide(rideId,cords) {
+        document.changePage("giveride", { rideId: rideId , cords: cords });
     }
 
     function cancelRide(rideId) {
@@ -269,7 +269,8 @@
                             take.className = "tableAction";
                             take.value = "Give ride";
                             take.addEventListener("click", function (e) {
-                                giveRide(ride.Id);
+                                var coordinates = [ride.Origin.X, ride.Origin.Y];
+                                giveRide(ride.Id, coordinates);
                                 e.preventDefault();
                             });
 

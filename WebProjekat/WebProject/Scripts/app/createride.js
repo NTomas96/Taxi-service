@@ -92,8 +92,6 @@
             vehicleTypeLabel.innerText = "Vehicle type: ";
             vehicleTypeLabel.htmlFor = vehicleTypeInput;
 
-            driverInput = document.createElement("select");
-
             for (var i = 0; i < driverData.Drivers.length; i++) {
                 var driver = document.createElement("option");
                 driver.innerHTML = driverData.Drivers[i].Firstname + " " + driverData.Drivers[i].Lastname;

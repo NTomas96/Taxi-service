@@ -51,7 +51,28 @@
 
             driverInput = document.createElement("select");
 
-            for (var i = 0; i < driverData.Drivers.length; i++) {
+            driverData.Drivers.sort(function (driver1, driver2) {
+                if (!("Location" in driver1) || driver1.Location === null)
+                    return 1;
+                if (!("Location" in driver2) || driver2.Location === null)
+                    return -1;
+
+                var point = data.cords;
+                var point1 = [driver1.Location.X, driver1.Location.Y];
+                var point2 = [driver2.Location.X, driver2.Location.Y];
+
+                var dis1 = window.common.getCoordsDistance(point, point1);
+                var dis2 = window.common.getCoordsDistance(point, point2);
+
+                if (dis1 < dis2)
+                    return -1;
+                else if (dis1 > dis2)
+                    return 1;
+                else
+                    return 0;
+            });
+
+            for (var i = 0; i < 5; i++) {
                 var driver = document.createElement("option");
                 driver.innerHTML = driverData.Drivers[i].Firstname + " " + driverData.Drivers[i].Lastname;
                 driver.value = driverData.Drivers[i].Id;
