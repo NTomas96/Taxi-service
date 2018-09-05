@@ -39,7 +39,7 @@ namespace WebProject.Database
             database.Open();
 
             string[] tables = {
-                "CREATE TABLE IF NOT EXISTS `user` (`Id` INTEGER PRIMARY KEY AUTOINCREMENT,`Username` TEXT UNIQUE,`Password` TEXT,`Firstname` TEXT, `Lastname` TEXT,`JMBG` TEXT,`PhoneNumber` TEXT,`Email` TEXT,`Gender` INTEGER,`Role` INTEGER, `Location` TEXT, `Vehicle` INTEGER);",
+                "CREATE TABLE IF NOT EXISTS `user` (`Id` INTEGER PRIMARY KEY AUTOINCREMENT,`Username` TEXT UNIQUE,`Password` TEXT,`Firstname` TEXT, `Lastname` TEXT,`JMBG` TEXT,`PhoneNumber` TEXT,`Email` TEXT,`Gender` INTEGER,`Role` INTEGER, `Location` TEXT, `Vehicle` INTEGER,'Blocked' BOOLEAN);",
                 "CREATE TABLE IF NOT EXISTS `vehicle` (`Id` INTEGER PRIMARY KEY AUTOINCREMENT, `Year` INTEGER, `License` TEXT, `TaxiID` TEXT, `Type` INTEGER);",
                 "CREATE TABLE IF NOT EXISTS `ride` (`Id` INTEGER PRIMARY KEY AUTOINCREMENT, `Time` INTEGER, `Origin` TEXT, `VehicleType` INTEGER, `Customer` INTEGER, `Destination` TEXT, `Dispatcher` INTEGER, `Driver` INTEGER, `Price` REAL, `Status` INTEGER, `Comment` TEXT);"
             };

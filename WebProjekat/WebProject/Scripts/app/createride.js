@@ -73,6 +73,7 @@
             fieldSet.appendChild(document.createElement("br"));
 
             vehicleTypeInput = document.createElement("select");
+            driverInput = document.createElement("select");
 
             var type = document.createElement("option");
             type.innerHTML = "Any";

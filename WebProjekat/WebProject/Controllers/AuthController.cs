@@ -29,10 +29,18 @@ namespace WebProject.Controllers
                 uint sessionId = SessionProvider.GetInstance().CreateNewSession();
                 var session = SessionProvider.GetInstance().GetSession(sessionId);
 
-                response.Code = 0;
-                response.Token = sessionId;
+                if (!user.Blocked)
+                {
+                    response.Code = 0;
+                    response.Token = sessionId;
 
-                session["user"] = user;
+                    session["user"] = user;
+                }
+                else
+                {
+                    response.Code = 2;
+                    response.Error = "This username has been blocked by admin!\nPlease try again later.";
+                }
             }
             else
             {
@@ -144,6 +152,72 @@ namespace WebProject.Controllers
             {
                 SessionProvider.GetInstance().DeleteSession(request.Token);
             }
+
+            return Json(response);
+        }
+
+        [HttpPost]
+        public IHttpActionResult blockOrUnblockUser([FromBody] BlockOrUnblockRequest request)
+        {
+            Response response = new Response();
+
+            var session = SessionProvider.GetInstance().GetSession(request.Token);
+
+            if (session != null)
+            {
+                SessionProvider.GetInstance().DeleteSession(request.Token);
+            }
+
+            Auth auth = new Auth(Database.Database.GetInstance());
+            //session["user"] = auth.GetUserById(((User)session["user"]).Id); //update user from db
+
+            if (!(session["user"] is Dispatcher))
+            {
+                return Json(new NoAccessResponse());
+            }
+
+            User u = auth.GetUserById(request.UserId);
+            if(u.Blocked)
+            {
+                u.Blocked = false;
+            }
+            else
+            {
+                u.Blocked = true;
+            }
+
+            if(auth.UpdateUser(u))
+            {
+                response.Code = 0;
+            }
+            else
+            {
+                response.Code = 2;
+                response.Error = "User can't be blocked of unblocked";
+            }
+
+            return Json(response);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetAllUsers([FromUri] GetAllUsersRequest request)
+        {
+            var session = SessionProvider.GetInstance().GetSession(request.Token);
+
+            if (session == null)
+            {
+                return Json(new NoAccessResponse());
+            }
+
+            if (((User)session["user"]).Role != Role.Dispatcher)
+            {
+                return Json(new NoAccessResponse());
+            }
+            
+            Auth users = new Auth(Database.Database.GetInstance());
+
+            GetAllUsersResponse response = new GetAllUsersResponse();
+            response.Users = users.GetAllUsers();
 
             return Json(response);
         }

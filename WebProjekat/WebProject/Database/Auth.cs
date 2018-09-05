@@ -77,5 +77,11 @@ namespace WebProject.Database
                 return false;
             }
         }
+
+        public List<User> GetAllUsers()
+        {
+            return database.Select<User>("SELECT * FROM user WHERE Role != 1", new Dictionary<string, object>() { });
+        }
+        
     }
 }

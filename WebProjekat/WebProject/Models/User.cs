@@ -24,6 +24,7 @@ namespace WebProject.Models
         protected Location Location { get; set; }
         [ForeignField("vehicle", "id")]
         protected Vehicle Vehicle { get; set; }
+        public bool Blocked { get; set; }
 
         public User()
         {
@@ -58,6 +59,7 @@ namespace WebProject.Models
             Role = user.Role;
             Location = user.Location;
             Vehicle = user.Vehicle;
+            Blocked = user.Blocked;
         }
 
         public bool Validate()

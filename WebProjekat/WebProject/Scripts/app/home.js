@@ -1,31 +1,70 @@
 ﻿(function () {
 
-    function editProfileClick(event) {
-        document.changePage("editprofile");
+    var user;
 
+    function editProfileClick(event) {            
+
+        if (user.Blocked) {
+            alert("You are blocked!");
+            logoutClick(event);
+        }
+        else {
+            document.changePage("editprofile");            
+        }
         event.preventDefault();
     }
 
     function editLocationClick(event) {
-        document.changePage("editlocation");
 
+        if (user.Blocked) {
+            alert("You are blocked!");
+            logoutClick(event);
+        }
+        else {
+            document.changePage("editlocation");            
+        }
         event.preventDefault();
     }
 
     function orderRideClick(event) {
-        document.changePage("orderride");
+        if (user.Blocked) {
+            alert("You are blocked!");
+            logoutClick(event);
+        }
+        else {
+            document.changePage("orderride");
+        }
 
         event.preventDefault();
     }
 
     function createRideClick(event) {
-        document.changePage("createride");
+        if (user.Blocked) {
+            alert("You are blocked!");
+            logoutClick(event);
+        }
+        else {
+            document.changePage("createride");
+        }
 
         event.preventDefault();
     }
 
     function createDriverClick(event) {
-        document.changePage("createdriver");
+        if (user.Blocked) {
+            alert("You are blocked!");
+            logoutClick(event);
+        }
+        else {
+            document.changePage("createdriver");
+        }
+
+
+        event.preventDefault();
+    }
+
+    function blockUser(event) {
+        document.changePage("blockUser");
 
         event.preventDefault();
     }
@@ -44,39 +83,81 @@
     }
 
     function takeRide(rideId) {
+        if (user.Blocked) {
+            alert("You are blocked!");
+            logoutClick(event);
+        }
+        else {
 
-        window.common.apiRequest("Ride/Take", {RideId: rideId}, true, function (data) {
-            if (data.Code == 0) {
-                document.changePage("home", { info: "You took the ride!" });
-            }
-            else {
-                errorField.innerHTML = data.Error;
-            }
-        });
+            window.common.apiRequest("Ride/Take", { RideId: rideId }, true, function (data) {
+                if (data.Code == 0) {
+                    document.changePage("home", { info: "You took the ride!" });
+                }
+                else {
+                    errorField.innerHTML = data.Error;
+                }
+            });
+        }
     }
 
-    function giveRide(rideId,cords) {
-        document.changePage("giveride", { rideId: rideId , cords: cords });
+    function giveRide(rideId, cords) {
+        if (user.Blocked) {
+            alert("You are blocked!");
+            logoutClick(event);
+        }
+        else {
+            document.changePage("giveride", { rideId: rideId, cords: cords });
+        }
     }
 
     function cancelRide(rideId) {
-        document.changePage("cancelride", {rideId: rideId});
+        if (user.Blocked) {
+            alert("You are blocked!");
+            logoutClick(event);
+        }
+        else {
+            document.changePage("cancelride", { rideId: rideId });
+        }
     }
 
     function commentRide(rideId, price) {
-        document.changePage("commentride", { rideId: rideId});
+        if (user.Blocked) {
+            alert("You are blocked!");
+            logoutClick(event);
+        }
+        else {
+            document.changePage("commentride", { rideId: rideId });
+        }
     }
 
     function editRide(rideId) {
-        document.changePage("editride", { rideId: rideId });
+        if (user.Blocked) {
+            alert("You are blocked!");
+            logoutClick(event);
+        }
+        else {
+            document.changePage("editride", { rideId: rideId });
+        }
     }
 
     function successRide(rideId) {
-        document.changePage("finishride", { rideId: rideId });
+        if (user.Blocked) {
+            alert("You are blocked!");
+            logoutClick(event);
+        }
+        else {
+            document.changePage("finishride", { rideId: rideId });
+        }
     }
 
     function failRide(rideId) {
-        document.changePage("cancelride", { rideId: rideId });
+        if (user.Blocked) {
+            alert("You are blocked!");
+            logoutClick(event);
+        }
+        else {
+            document.changePage("cancelride", { rideId: rideId });
+        }
     }
 
     function renderPage(pageData) {
@@ -84,7 +165,7 @@
         window.common.apiRequest("Account/Home", {}, true, function (data) {
             var content = $("#content").get(0);
 
-            var user = data.User;
+            user = data.User;
 
             $("#content").empty();
 
@@ -159,6 +240,13 @@
                 createDriver.href = "#";
                 createDriver.onclick = createDriverClick;
                 content.appendChild(createDriver);
+                content.appendChild(document.createTextNode("  "));
+
+                var bUser = document.createElement("a");
+                bUser.innerHTML = "Block/Unblock a user";
+                bUser.href = "#";
+                bUser.onclick = blockUser;
+                content.appendChild(bUser);
                 content.appendChild(document.createTextNode("  "));
             }
 

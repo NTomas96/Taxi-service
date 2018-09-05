@@ -206,12 +206,14 @@
     <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Request\BlockOrUnblockRequest.cs" />
     <Compile Include="Models\Request\CreateDriverRequest.cs" />
     <Compile Include="Models\Request\CreateRideRequest.cs" />
     <Compile Include="Models\Request\EditLocationRequest.cs" />
     <Compile Include="Models\Request\EditProfileRequest.cs" />
     <Compile Include="Models\Request\EditRideRequest.cs" />
     <Compile Include="Models\Request\FinishRideRequest.cs" />
+    <Compile Include="Models\Request\GetAllUsersRequest.cs" />
     <Compile Include="Models\Request\GetFreeDriversRequest.cs" />
     <Compile Include="Models\Request\GetRideRequest.cs" />
     <Compile Include="Models\Request\GiveRideRequest.cs" />
@@ -227,6 +229,7 @@
     <Compile Include="Models\Response\EditProfileResponse.cs" />
     <Compile Include="Models\Response\EditRideResponse.cs" />
     <Compile Include="Models\Response\FinishRideResponse.cs" />
+    <Compile Include="Models\Response\GetAllUsersResponse.cs" />
     <Compile Include="Models\Response\GetFreeDriversResponse.cs" />
     <Compile Include="Models\Response\GetRideResponse.cs" />
     <Compile Include="Models\Response\HomeResponse.cs" />
@@ -254,6 +257,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\app\blockUser.js" />
     <Content Include="Scripts\app\cancelride.js" />
     <Content Include="Scripts\app\commentride.js" />
     <Content Include="Scripts\app\common.js" />

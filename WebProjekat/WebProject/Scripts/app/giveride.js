@@ -72,7 +72,12 @@
                     return 0;
             });
 
-            for (var i = 0; i < 5; i++) {
+            var len = 5;
+            if (driverData.Drivers.length < 5) {
+                len = driverData.Drivers.length;
+            }
+
+            for (var i = 0; i < len; i++) {
                 var driver = document.createElement("option");
                 driver.innerHTML = driverData.Drivers[i].Firstname + " " + driverData.Drivers[i].Lastname;
                 driver.value = driverData.Drivers[i].Id;
