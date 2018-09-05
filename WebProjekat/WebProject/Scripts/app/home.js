@@ -64,7 +64,7 @@
     }
 
     function blockUser(event) {
-        document.changePage("blockUser");
+        document.changePage("blockuser");
 
         event.preventDefault();
     }

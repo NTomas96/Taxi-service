@@ -163,13 +163,13 @@ namespace WebProject.Controllers
 
             var session = SessionProvider.GetInstance().GetSession(request.Token);
 
-            if (session != null)
+            if (session == null)
             {
-                SessionProvider.GetInstance().DeleteSession(request.Token);
+                return Json(new NoAccessResponse());
             }
 
             Auth auth = new Auth(Database.Database.GetInstance());
-            //session["user"] = auth.GetUserById(((User)session["user"]).Id); //update user from db
+            session["user"] = auth.GetUserById(((User)session["user"]).Id); //update user from db
 
             if (!(session["user"] is Dispatcher))
             {
@@ -177,14 +177,7 @@ namespace WebProject.Controllers
             }
 
             User u = auth.GetUserById(request.UserId);
-            if(u.Blocked)
-            {
-                u.Blocked = false;
-            }
-            else
-            {
-                u.Blocked = true;
-            }
+            u.Blocked = !u.Blocked;
 
             if(auth.UpdateUser(u))
             {

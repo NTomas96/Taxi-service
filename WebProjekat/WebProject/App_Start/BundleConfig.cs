@@ -39,7 +39,7 @@ namespace WebProject
                 "~/Scripts/app/orderride.js",
                 "~/Scripts/app/register.js",
                 "~/Scripts/app/script.js",
-                "~/Scripts/app/blockUser.js"
+                "~/Scripts/app/blockuser.js"
                 ));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're

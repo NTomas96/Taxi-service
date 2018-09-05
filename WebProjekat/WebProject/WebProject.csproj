@@ -257,7 +257,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\app\blockUser.js" />
+    <Content Include="Scripts\app\blockuser.js" />
     <Content Include="Scripts\app\cancelride.js" />
     <Content Include="Scripts\app\commentride.js" />
     <Content Include="Scripts\app\common.js" />

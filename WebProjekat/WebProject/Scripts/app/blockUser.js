@@ -81,8 +81,8 @@
     }
 
 
-    pages["blockUser"] = {
-        name: "blockUser",
+    pages["blockuser"] = {
+        name: "blockuser",
         render: renderPage
     }
 })();
