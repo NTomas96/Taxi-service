@@ -362,7 +362,7 @@ window.common = (function () {
             else {
                 input1.checked = true;
             }
-            
+
             e.preventDefault();
         });
 
@@ -371,8 +371,7 @@ window.common = (function () {
         label.htmlFor = input2;
 
         cell.appendChild(input2);
-        cell.appendChild(label);       
-
+        cell.appendChild(label);
 
         var cell = row.insertCell(2);
         cell.style.textAlign = "left";

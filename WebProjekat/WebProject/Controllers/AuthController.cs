@@ -37,7 +37,7 @@ namespace WebProject.Controllers
             else
             {
                 response.Code = 2;
-                response.Error = "Invalid username/password combination!";
+                response.Error = "Invalid username or password";
             }
 
             return Json(response);
